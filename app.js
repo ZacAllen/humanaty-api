@@ -9,6 +9,12 @@ var bodyParser = require('body-parser');
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var signUpRouter = require('./routes/signUp');
+var loginRouter = require('./routes/login');
+var loginGoogleRouter = require('./routes/loginGoogle');
+var checkLoginRouter = require('./routes/isUserLoggedIn');
+var logoutRouter = require('./routes/logout');
+var accountInfoRouter = require('./routes/accountInfo');
+var changeStatusRouter = require('./routes/changeStatus');
 var testAPIRouter = require("./routes/testAPI");
 var firebaseRouter = require('./routes/firebase');
 
@@ -31,8 +37,14 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/signUp', signUpRouter);
+app.use('/login', loginRouter);
+app.use('/loginGoogle', loginGoogleRouter);
 app.use("/testAPI", testAPIRouter);
 app.use("/firebase", firebaseRouter);
+app.use("/isUserLoggedIn", checkLoginRouter);
+app.use("/logout", logoutRouter);
+app.use("/accountInfo", accountInfoRouter);
+app.use("/changeStatus", changeStatusRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -48,6 +60,12 @@ app.use(function(err, req, res, next) {
   // render the error page
   res.status(err.status || 500);
   res.render('error');
+
+  if (err) {
+    console.log('Error', err);
+  } else {
+    console.log('404')
+  }
 });
 
 module.exports = app;
