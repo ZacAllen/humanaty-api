@@ -11,6 +11,7 @@ var usersRouter = require('./routes/users');
 var signUpRouter = require('./routes/signUp');
 var testAPIRouter = require("./routes/testAPI");
 var firebaseRouter = require('./routes/firebase');
+var searchEventRouter = require('./routes/searchEvent');
 
 var app = express();
 
@@ -32,6 +33,7 @@ app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/signUp', signUpRouter);
 app.use("/testAPI", testAPIRouter);
+app.use('/search-event', searchEventRouter);
 app.use("/firebase", firebaseRouter);
 
 // catch 404 and forward to error handler
