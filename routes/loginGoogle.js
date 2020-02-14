@@ -40,6 +40,8 @@ function signInGoogleUser(id_token, name, email, DOB) {
                 Email: email,
                 DOB: DOB, //this is a temp value, figure out how to get google DOB later
                 isHost: false,
+                eventsHosting: [],
+                eventsAttending: []
             })
             .then(function() {
                 console.log("Document successfully written!");

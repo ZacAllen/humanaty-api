@@ -35,6 +35,8 @@ function createNewUser(email, password, name, DOB) {
             Email: email,
             DOB: DOB.toString(),
             isHost: false,
+            eventsHosting: [],
+            eventsAttending: []
         })
         .then(function() {
             console.log("Document successfully written!");
