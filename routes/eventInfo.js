@@ -8,3 +8,5 @@ var router = express.Router();
 
 var database = firebase.firestore(db.app); //declare database using app initialization in firebase.js
 var eventCollection = database.collection("events"); //reference to the events collection of our database
+
+module.exports = router;
