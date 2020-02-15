@@ -28,7 +28,7 @@ function createNewUser(email, password, name, DOB) {
         // User is signed in.
         //Now that user is created, find their ID
         var user = firebase.auth().currentUser;
-        var uid = user.uid; 
+        var uid = user.uid;
         // Add a new document in collection "users" using this user's ID
         database.collection("users").doc(uid).set({
             Name: name,
