@@ -15,7 +15,8 @@ function createNewUser(email, password, name, DOB) {
   firebase.auth().signOut();
 
   firebase.auth().createUserWithEmailAndPassword(email, password).catch(function(error) {
-    // Handle Errors here.
+    // Handle Errors here. ***Currently an error is being allowed, it may overwrite user data if an improperly formatted email is
+    //submitted. Will be fixed when we have form validation tho
     var errorCode = error.code;
     var errorMessage = error.message;
     console.log(errorMessage);
