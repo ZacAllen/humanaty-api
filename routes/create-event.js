@@ -22,10 +22,20 @@ function createNewEvent(name, address, city, state, zip, date, time, meal,
     firebase.auth().onAuthStateChanged(function(user) {
         if (user) {
           // User is signed in.
-          var isAnonymous = user.isAnonymous;
-          var uid = user.uid;
+  
+          let uid = user.uid;
+          var newEventRef = database.collection("events").doc();
+          console.log(newEventId);
+          var newEventId = newEventRef.id;
           console.log("signed in anonymously");
-          database.collection("events").doc(uid).set({
+
+          database.collection("users").doc(uid).update({ 
+            //update eventshosting field in this user's array
+              eventsHosting:   firebase.firestore.FieldValue.arrayUnion(newEventId) 
+              //this appends the event's id to the array field
+              //STILL TO BE DONE: this needs to be handled with a promise or catch block
+          });
+          let setDoc = database.collection("events").doc(newEventId).set({
             name: name,
             address: address,
             city: city,
@@ -39,17 +49,20 @@ function createNewEvent(name, address, city, state, zip, date, time, meal,
             allergy: allergy,
             additional: additional
         });
-          // ...
+        return setDoc.then(function() {
+          console.log("Document successfully written for event!");
+        });
+  
         } else {
           // User is signed out.
           // ...
         }
-        // ...
-      });
+    
+      }); 
 }
 
 router.post('/', function(req, res, next) {
-  console.log("API working");
+  console.log("API working for event page");
   createNewEvent(req.body.name, req.body.address, req.body.city, req.body.state,
                   req.body.zip, req.body.date, req.body.time, 
                   req.body.meal, req.body.guest, req.body.description,
