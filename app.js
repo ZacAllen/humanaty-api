@@ -19,6 +19,8 @@ var testAPIRouter = require("./routes/testAPI");
 var firebaseRouter = require('./routes/firebase');
 var createEventRouter = require('./routes/create-event');
 var eventInfoRouter = require('./routes/eventInfo');
+var getEventsByCityRouter = require('./routes/getEventsByCity');
+
 
 var app = express();
 
@@ -49,6 +51,8 @@ app.use("/accountInfo", accountInfoRouter);
 app.use("/changeStatus", changeStatusRouter);
 app.use("/create-event", createEventRouter);
 app.use("/eventInfo", eventInfoRouter);
+app.use("/get-events-by-city", getEventsByCityRouter);
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
