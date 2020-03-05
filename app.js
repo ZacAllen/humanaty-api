@@ -7,7 +7,6 @@ var cors = require('cors');
 var bodyParser = require('body-parser');
 
 var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
 var signUpRouter = require('./routes/signUp');
 var loginRouter = require('./routes/login');
 var loginGoogleRouter = require('./routes/loginGoogle');
@@ -39,7 +38,6 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
-app.use('/users', usersRouter);
 app.use('/signUp', signUpRouter);
 app.use('/login', loginRouter);
 app.use('/loginGoogle', loginGoogleRouter);
@@ -53,6 +51,11 @@ app.use("/create-event", createEventRouter);
 app.use("/eventInfo", eventInfoRouter);
 app.use("/get-events-by-city", getEventsByCityRouter);
 
+
+// NEW ROUTING EXAMPLE
+require('./routes/users-route')(app);
+require('./routes/events-route')(app);
+require('./routes/farmers-route')(app);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
