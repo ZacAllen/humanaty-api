@@ -18,7 +18,11 @@ router.get('/', function(req, res, next) {
             if (userCollection.doc(uid).get().then(function(doc) {
                 var data = doc.data(); //object containing data fields of this user
                 /* create object containing the user data we want, for now email, name, and status*/
-                var obj = {name: data.displayName, email: data.email, hostVerified: data.hostVerified}
+                var obj = {name: data.displayName, email: data.email, hostVerified: data.hostVerified, aboutMe: data.aboutMe,
+                    allergies: data.allergies, birthday: data.birthday, eventsAttending: data.eventsAttending, 
+                    eventsHosting: data.eventsHosting, guestRating: data.guestRating, hostRating: data.hostRating,
+                    location: data.location, pastEventsAttended: data.pastEventsAttended, pastEventsHosted: data.pastEventsHosted, 
+                    photoURL: data.photoURL, uid: data.uid}
                 res.send(obj) //send user data back to front end
             }));
           
