@@ -9,6 +9,10 @@ var router = express.Router();
 var database = firebase.firestore(db.app); //declare database using app initialization in firebase.js
 var userCollection = database.collection("users"); //reference to the users collection of our database
 
+// /**
+//  * This has been moved to getCurrentUser in users-controller.js
+//  * //TODO: remove this method after updating front end api call. Should call /user/current
+//  ** 
 router.get('/', function(req, res, next) {
     firebase.auth().onAuthStateChanged((user) => {
         if (user) {
