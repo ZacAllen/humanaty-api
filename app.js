@@ -40,7 +40,6 @@ app.use('/login', loginRouter);
 app.use('/loginGoogle', loginGoogleRouter);
 app.use("/firebase", firebaseRouter);
 app.use("/isUserLoggedIn", checkLoginRouter);
-app.use("/logout", logoutRouter);
 app.use("/accountInfo", accountInfoRouter);
 app.use("/create-event", createEventRouter);
 app.use("/eventInfo", eventInfoRouter);

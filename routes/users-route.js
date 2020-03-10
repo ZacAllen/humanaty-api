@@ -24,3 +24,12 @@ module.exports = function (app) {
   );     
 };
 
+/**
+ * toggle current's user host/guest status
+ */
+module.exports = function (app) {
+  app.get('/logout',
+        users.logOut
+  );     
+};
+
