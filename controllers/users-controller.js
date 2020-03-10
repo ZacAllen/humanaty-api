@@ -5,9 +5,7 @@ var db = require('../routes/firebase'); //get reference to firebase config file
 var database = firebase.firestore(db.app); //declare database using app initialization in firebase.js
 var userCollection = database.collection("users"); //reference to the users collection of our database
 
-
-
-exports.changeUserType = function(req, res, next) {
+exports.changeUserStatus = function(req, res, next) {
     firebase.auth().onAuthStateChanged((user) => {
         if (user) {
 
@@ -59,4 +57,31 @@ exports.getUserById = function(req, res, next) {
     //       res.send("Error getting user data");
     //     }
     //  });
+};
+
+exports.getCurrentUser = function(req, res, next) {
+
+    firebase.auth().onAuthStateChanged((user) => {
+        if (user) {
+            let uid = req.params.id;
+            userCollection.doc(uid)
+                .get()
+                .then( doc => {
+                    let { id } = doc;
+                    let data = doc.data();
+
+                    //this line manually add the id to the result object since Firebase data doesnt not include id.
+                    let result = { id, ...data };
+
+                    //return response
+                    res.send(result);  
+                })
+                .catch(err => {
+                    console.log('Error retreiving currently logged in user data from database', err);
+                });
+        } else {
+          console.log("No user logged in");  
+          res.send("Error getting logged in user data");
+        }
+     });
 };
