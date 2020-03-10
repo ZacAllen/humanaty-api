@@ -85,3 +85,13 @@ exports.getCurrentUser = function(req, res, next) {
         }
      });
 };
+
+exports.logOut = function(req, res, next) {
+   //sign user out
+   firebase.auth().signOut().then(function() {
+    res.send("Logged out!"); //the res.sends will be printed in front end console
+   }, function(error) {
+       console.error('sign out error', error);
+       res.send("Logout error!");
+   })  
+};
