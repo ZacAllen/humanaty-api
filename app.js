@@ -11,13 +11,6 @@ var signUpRouter = require('./routes/signUp');
 var loginRouter = require('./routes/login');
 var loginGoogleRouter = require('./routes/loginGoogle');
 var checkLoginRouter = require('./routes/isUserLoggedIn');
-<<<<<<< HEAD
-var accountInfoRouter = require('./routes/accountInfo');
-var changeStatusRouter = require('./routes/changeStatus');
-var testAPIRouter = require("./routes/testAPI");
-=======
-var logoutRouter = require('./routes/logout');
->>>>>>> bf9794e6e2330d5634e583cc1971faef53aa14e3
 var firebaseRouter = require('./routes/firebase');
 var createEventRouter = require('./routes/create-event');
 var eventInfoRouter = require('./routes/eventInfo');
@@ -46,12 +39,6 @@ app.use('/login', loginRouter);
 app.use('/loginGoogle', loginGoogleRouter);
 app.use("/firebase", firebaseRouter);
 app.use("/isUserLoggedIn", checkLoginRouter);
-<<<<<<< HEAD
-app.use("/logout", logoutRouter);
-app.use("/changeStatus", changeStatusRouter);
-=======
-app.use("/accountInfo", accountInfoRouter);
->>>>>>> bf9794e6e2330d5634e583cc1971faef53aa14e3
 app.use("/create-event", createEventRouter);
 app.use("/eventInfo", eventInfoRouter);
 
