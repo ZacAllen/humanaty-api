@@ -5,3 +5,31 @@ module.exports = function (app) {
         users.getUserById
   );     
 };
+
+/**
+ * get currently logged in user data
+ */
+module.exports = function (app) {
+  app.get('/user/current',
+        users.getCurrentUser
+  );     
+};
+
+/**
+ * toggle current's user host/guest status
+ */
+module.exports = function (app) {
+  app.get('/changeStatus',
+        users.changeUserStatus
+  );     
+};
+
+/**
+ * toggle current's user host/guest status
+ */
+module.exports = function (app) {
+  app.get('/logout',
+        users.logOut
+  );     
+};
+

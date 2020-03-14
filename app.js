@@ -11,14 +11,16 @@ var signUpRouter = require('./routes/signUp');
 var loginRouter = require('./routes/login');
 var loginGoogleRouter = require('./routes/loginGoogle');
 var checkLoginRouter = require('./routes/isUserLoggedIn');
+<<<<<<< HEAD
 var accountInfoRouter = require('./routes/accountInfo');
 var changeStatusRouter = require('./routes/changeStatus');
 var testAPIRouter = require("./routes/testAPI");
+=======
+var logoutRouter = require('./routes/logout');
+>>>>>>> bf9794e6e2330d5634e583cc1971faef53aa14e3
 var firebaseRouter = require('./routes/firebase');
 var createEventRouter = require('./routes/create-event');
 var eventInfoRouter = require('./routes/eventInfo');
-var getEventsByCityRouter = require('./routes/getEventsByCity');
-
 
 var app = express();
 
@@ -36,19 +38,22 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+
+//OLD ROUTING DECLARATION, WILL DEPRECATE. TO MAKE NEW API, SEE BELOW EXAMPLE
 app.use('/', indexRouter);
 app.use('/signUp', signUpRouter);
 app.use('/login', loginRouter);
 app.use('/loginGoogle', loginGoogleRouter);
-app.use("/testAPI", testAPIRouter);
 app.use("/firebase", firebaseRouter);
 app.use("/isUserLoggedIn", checkLoginRouter);
+<<<<<<< HEAD
 app.use("/logout", logoutRouter);
 app.use("/changeStatus", changeStatusRouter);
+=======
+app.use("/accountInfo", accountInfoRouter);
+>>>>>>> bf9794e6e2330d5634e583cc1971faef53aa14e3
 app.use("/create-event", createEventRouter);
 app.use("/eventInfo", eventInfoRouter);
-app.use("/get-events-by-city", getEventsByCityRouter);
-
 
 // NEW ROUTING EXAMPLE
 require('./routes/users-route')(app);
