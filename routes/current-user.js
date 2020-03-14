@@ -25,7 +25,7 @@ router.get('/', function(req, res, next) {
                 var obj = {name: data.displayName, email: data.email, hostVerified: data.hostVerified, aboutMe: data.aboutMe,
                     allergies: data.allergies, birthday: data.birthday, eventsAttending: data.eventsAttending, 
                     eventsHosting: data.eventsHosting, guestRating: data.guestRating, hostRating: data.hostRating,
-                    location: data.location, pastEventsAttended: data.pastEventsAttended, pastEventsHosted: data.pastEventsHosted, 
+                    location: data.location, eventsAttended: data.eventsAttended, eventsHosted: data.eventsHosted, 
                     photoURL: data.photoURL, uid: data.uid}
                 res.send(obj) //send user data back to front end
             }));

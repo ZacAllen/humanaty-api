@@ -43,6 +43,8 @@ function signInGoogleUser(id_token, name, email, DOB) {
                 email: email,
                 eventsAttending: [],
                 eventsHosting: [],
+                eventsAttended: [],
+                eventsHosted: [],
                 guestRating: null,
                 hostRating: null,
                 hostVerified: false,
@@ -52,8 +54,6 @@ function signInGoogleUser(id_token, name, email, DOB) {
                   state: null,
                   zip: null
                 },
-                pastEventsAttended: [],
-                pastEventsHosted: [],
                 photoURL: "https://i.kym-cdn.com/photos/images/newsfeed/001/207/210/b22.jpg",
                 uid: uid
             })

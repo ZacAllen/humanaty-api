@@ -39,17 +39,18 @@ function createNewUser(email, password, name, DOB) {
             email: email,
             eventsAttending: [],
             eventsHosting: [],
-            guestRating: null,
-            hostRating: null,
+            eventsAttended: [],
+            eventsHosted: [],
+            guestRating: 0,
+            hostRating: 0,
             hostVerified: false,
             location: { //figure out how to get user location automatically?
               address: null,
               city: null,
               state: null,
-              zip: null
+              zip: null,
+              geopoint: {}
             },
-            pastEventsAttended: [],
-            pastEventsHosted: [],
             photoURL: "https://i.kym-cdn.com/photos/images/newsfeed/001/207/210/b22.jpg",
             uid: uid
 
