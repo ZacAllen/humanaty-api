@@ -54,6 +54,7 @@ function signInGoogleUser(id_token, name, email, DOB) {
                   state: null,
                   zip: null
                 },
+                reviews: [],
                 photoURL: "https://i.kym-cdn.com/photos/images/newsfeed/001/207/210/b22.jpg",
                 uid: uid
             })
