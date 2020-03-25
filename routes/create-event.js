@@ -12,6 +12,16 @@ var database = firebase.firestore(db.app); //declare database using app initiali
 function createNewEvent(name, address, city, state, zip, date, time, meal, 
                         guest, description, allergy, additional) {
     console.log("createNewEvent called");
+<<<<<<< HEAD
+=======
+    // //TESTING PURPOSES ONLY: DELETE WHEN SIGN IN HAS BEEN MERGED TO MASTER
+    // firebase.auth().signInAnonymously().catch(function(error) {
+    //     // Handle Errors here.
+    //     var errorCode = error.code;
+    //     var errorMessage = error.message;
+    //     // ...
+    // });
+>>>>>>> 443a0c4f906a66911180940c3751e6a44a9038ab
     firebase.auth().onAuthStateChanged(function(user) {
         if (user) {
           // User is signed in.

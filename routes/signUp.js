@@ -15,7 +15,8 @@ function createNewUser(email, password, name, DOB) {
   firebase.auth().signOut();
 
   firebase.auth().createUserWithEmailAndPassword(email, password).catch(function(error) {
-    // Handle Errors here.
+    // Handle Errors here. ***Currently an error is being allowed, it may overwrite user data if an improperly formatted email is
+    //submitted. Will be fixed when we have form validation tho
     var errorCode = error.code;
     var errorMessage = error.message;
     console.log(errorMessage);
@@ -31,12 +32,29 @@ function createNewUser(email, password, name, DOB) {
         var uid = user.uid;
         // Add a new document in collection "users" using this user's ID
         database.collection("users").doc(uid).set({
-            Name: name,
-            Email: email,
-            DOB: DOB.toString(),
-            isHost: false,
+            aboutMe: "Default about section - figure out what should say later.",
+            allergies: [], //users will be able to populate this with their allergies
+            birthday: DOB.toString(),
+            displayName: name,
+            email: email,
+            eventsAttending: [],
             eventsHosting: [],
-            eventsAttending: []
+            eventsAttended: [],
+            eventsHosted: [],
+            guestRating: 0,
+            hostRating: 0,
+            hostVerified: false,
+            location: { //figure out how to get user location automatically?
+              address: null,
+              city: null,
+              state: null,
+              zip: null,
+              geopoint: {}
+            },
+            reviews: [],
+            photoURL: "https://i.kym-cdn.com/photos/images/newsfeed/001/207/210/b22.jpg",
+            uid: uid
+
         })
         .then(function() {
             console.log("Document successfully written!");

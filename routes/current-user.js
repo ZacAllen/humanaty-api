@@ -9,6 +9,10 @@ var router = express.Router();
 var database = firebase.firestore(db.app); //declare database using app initialization in firebase.js
 var userCollection = database.collection("users"); //reference to the users collection of our database
 
+// /**
+//  * This has been moved to getCurrentUser in users-controller.js
+//  * //TODO: remove this method after updating front end api call. Should call /user/current
+//  ** 
 router.get('/', function(req, res, next) {
     firebase.auth().onAuthStateChanged((user) => {
         if (user) {
@@ -17,17 +21,13 @@ router.get('/', function(req, res, next) {
             //Find specific user in the users collection based on their User ID
             if (userCollection.doc(uid).get().then(function(doc) {
                 var data = doc.data(); //object containing data fields of this user
-                if (data.isHost) { //if user is host
-                    userCollection.doc(uid).update( { //change status to guest
-                        isHost: false
-                    }) 
-                } else {
-                    userCollection.doc(uid).update( {
-                        isHost: true
-                    }) 
-                }
-                
-                res.send("status changed!")
+                /* create object containing the user data we want, for now email, name, and status*/
+                var obj = {name: data.displayName, email: data.email, hostVerified: data.hostVerified, aboutMe: data.aboutMe,
+                    allergies: data.allergies, birthday: data.birthday, eventsAttending: data.eventsAttending, 
+                    eventsHosting: data.eventsHosting, guestRating: data.guestRating, hostRating: data.hostRating,
+                    location: data.location, eventsAttended: data.eventsAttended, eventsHosted: data.eventsHosted, 
+                    photoURL: data.photoURL, uid: data.uid}
+                res.send(obj) //send user data back to front end
             }));
           
         } else {
