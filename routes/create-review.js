@@ -14,15 +14,10 @@ function createNewReview(date, rating, reviewBody, reviewedAsHost, reviewee, rev
     firebase.auth().onAuthStateChanged(function(user) {
         if (user) {
           // User is signed in.
-  
-          let uid = user.uid;
+
           var newReviewRef = database.collection("reviews").doc();
           var newReviewId = newReviewRef.id;
-
-          database.collection("users").doc(uid).update({ 
-            //update reviews field in this user's array
-              reviews: firebase.firestore.FieldValue.arrayUnion(newReviewId)
-          });
+          
           let setDoc = database.collection("reviews").doc(newReviewId).set({
             date: date,
             rating: rating,
@@ -31,9 +26,9 @@ function createNewReview(date, rating, reviewBody, reviewedAsHost, reviewee, rev
             reviewee: reviewee,
             reviewer: reviewer
           });
-        return setDoc.then(function() {
-          console.log("Document successfully written for review!");
-        });
+            return setDoc.then(function() {
+                console.log("Document successfully written for review!");
+            });
   
         } else {
           // User is signed out.
