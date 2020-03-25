@@ -14,6 +14,7 @@ var checkLoginRouter = require('./routes/isUserLoggedIn');
 var firebaseRouter = require('./routes/firebase');
 var createEventRouter = require('./routes/create-event');
 var eventInfoRouter = require('./routes/eventInfo');
+var currentUserRouter = require('./routes/current-user');
 
 var app = express();
 
@@ -41,6 +42,7 @@ app.use("/firebase", firebaseRouter);
 app.use("/isUserLoggedIn", checkLoginRouter);
 app.use("/create-event", createEventRouter);
 app.use("/eventInfo", eventInfoRouter);
+app.use("/current-user", currentUserRouter);
 
 // NEW ROUTING EXAMPLE
 require('./routes/users-route')(app);
