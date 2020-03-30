@@ -27,7 +27,9 @@ router.get('/', function(req, res, next) {
                     eventsHosting: data.eventsHosting, guestRating: data.guestRating, hostRating: data.hostRating,
                     location: data.location, eventsAttended: data.eventsAttended, eventsHosted: data.eventsHosted, 
                     photoURL: data.photoURL, uid: data.uid}
-                res.send(obj) //send user data back to front end
+                //this is superfluous ^^^, don't know what I was thinking here. Returning the data variable I just declared 
+                //would be the same as returning this massive object 
+                res.send(data) //send user data back to front end
             }));
           
         } else {
