@@ -8,11 +8,18 @@ var router = express.Router();
 
 const stripe = require('stripe')('sk_live_xIKmRktvuWZe8oauRwNbgAl900tlEhEydq');
 
-(async () => {
+router.post('/', function(req, res, next) {
+  console.log("API working for payment page");
+  createPaymentIntent(req.body.amount);
+});
+
+async function createPaymentIntent(amount) {
   const paymentIntent = await stripe.paymentIntents.create({
-    amount: 1099,
+    amount: amount,
     currency: 'usd',
     // Verify your integration in this guide by including this parameter
     metadata: {integration_check: 'accept_a_payment'},
   });
-})();
+}
+
+module.exports = router;

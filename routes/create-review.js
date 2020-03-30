@@ -26,9 +26,9 @@ function createNewReview(date, rating, reviewBody, reviewedAsHost, reviewee, rev
             reviewee: reviewee,
             reviewer: reviewer
           });
-            return setDoc.then(function() {
-                console.log("Document successfully written for review!");
-            });
+          return setDoc.then(function() {
+            console.log("Document successfully written for review!");
+          });
   
         } else {
           // User is signed out.
