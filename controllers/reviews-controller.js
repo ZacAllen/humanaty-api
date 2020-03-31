@@ -8,8 +8,11 @@ var reviewCollection = database.collection("reviews"); //reference to the review
 
 //TODO: implement create review logic here
 exports.createReview = function(req, res, next) {
-    res.send("implement create review here");  
-}
+    console.log("API working for review page");
+    createNewReview(req.body.date, req.body.rating, req.body.reviewBody,
+                    req.body.reviewedAsHost, req.body.reviewee, req.body.reviewer); 
+    res.send("Review created!");                
+  }
 
 exports.getReviewById = function(req, res, next) {
 
@@ -39,3 +42,32 @@ exports.getReviewById = function(req, res, next) {
     //     }
     //  });
 };
+
+function createNewReview(date, rating, reviewBody, reviewedAsHost, reviewee, reviewer) {
+    console.log("createNewReview called");
+    firebase.auth().onAuthStateChanged(function(user) {
+        if (user) {
+          // User is signed in.
+
+          var newReviewRef = database.collection("reviews").doc();
+          var newReviewId = newReviewRef.id;
+          
+          let setDoc = database.collection("reviews").doc(newReviewId).set({
+            date: date,
+            rating: rating,
+            reviewBody: reviewBody,
+            reviewedAsHost: reviewedAsHost,
+            reviewee: reviewee,
+            reviewer: reviewer
+          });
+          return setDoc.then(function() {
+            console.log("Document successfully written for review!");
+          });
+  
+        } else {
+          // User is signed out.
+          // ...
+        }
+    
+      }); 
+}
