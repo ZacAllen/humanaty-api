@@ -13,13 +13,9 @@ router.post('/', function(req, res, next) {
   createPaymentIntent(req.body.amount);
 });
 
-async function createPaymentIntent(amount) {
-  const paymentIntent = await stripe.paymentIntents.create({
-    amount: amount,
-    currency: 'usd',
-    // Verify your integration in this guide by including this parameter
-    metadata: {integration_check: 'accept_a_payment'},
-  });
-}
+const paymentIntent = await stripe.paymentIntents.create({
+  amount: 1099,
+  currency: 'usd',
+});
 
 module.exports = router;
