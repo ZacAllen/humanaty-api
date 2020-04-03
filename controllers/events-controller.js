@@ -8,7 +8,49 @@ var eventCollection = database.collection("events"); //reference to the event co
 
 //TODO: implement create event logic here
 exports.createEvent = function(req, res, next) {
-    res.send("implement create event here");  
+    console.log("Event body", req.body);
+    firebase.auth().onAuthStateChanged(function(user) {
+        if (user) {
+            console.log("logged in", req.body);
+
+          // User is signed in.
+          let uid = user.uid;
+          var newEventRef = database.collection("events").doc();
+          var newEventId = newEventRef.id;
+          database.collection("users").doc(uid).update({ 
+            //update eventshosting field in this user's array
+              eventsHosting:   firebase.firestore.FieldValue.arrayUnion(newEventId) 
+              //this appends the event's id to the array field
+              //TODO: this needs to be handled with a promise or catch block
+          });
+          let event = req.body;
+          let setDoc = database.collection("events").doc(newEventId).set({
+            title: event.title,
+            location: event.location,
+            date: event.date,
+            meal: event.meal,
+            guestNum :event.guestNum,
+            description: event.description,
+            allergies: event.allergies,
+            additionalInfo: event.additionalInfo,
+            accessibilityAccommodations : event.accessibilityAccommodations,
+            hostID: uid,
+            photoGallery: event.photoGallery,
+            costPerSeat: event.costPerSeat,
+            attendees: {}
+        });
+        return setDoc.then(function() {
+          console.log("Document successfully written for event!");
+          res.status(200).send("Event successfully created");  
+        });
+  
+        } else {
+            res.status(200).send("User is not logged in");
+          // User is signed out.
+          // ...
+        }
+    
+      }); 
 }
 
 exports.getEventsByCriteria = function(req, res, next) {
