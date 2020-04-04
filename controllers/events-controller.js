@@ -41,7 +41,7 @@ exports.createEvent = function(req, res, next) {
         });
         return setDoc.then(function() {
           console.log("Document successfully written for event!");
-          res.status(200).send("Event successfully created");  
+          res.status(200).send({eventId: newEventId, hostId : uid});  
         });
   
         } else {
