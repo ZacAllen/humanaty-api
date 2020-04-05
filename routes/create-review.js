@@ -9,6 +9,8 @@ var router = express.Router();
 
 var database = firebase.firestore(db.app); //declare database using app initialization in firebase.js
 
+//DEPRECATED - MOVED TO reviews-controller, 3/31/2020
+
 function createNewReview(date, rating, reviewBody, reviewedAsHost, reviewee, reviewer) {
     console.log("createNewReview called");
     firebase.auth().onAuthStateChanged(function(user) {
@@ -42,6 +44,7 @@ router.post('/', function(req, res, next) {
     console.log("API working for review page");
     createNewReview(req.body.date, req.body.rating, req.body.reviewBody,
                     req.body.reviewedAsHost, req.body.reviewee, req.body.reviewer); 
+    res.send("Review created!");                
   });
 
 module.exports = router;
