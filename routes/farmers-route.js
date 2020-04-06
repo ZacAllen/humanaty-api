@@ -8,4 +8,7 @@ module.exports = function (app) {
     app.get('/farmers',
         farmers.getFarmersByCriteria
     );
+    app.get('/farmlist',
+        farmers.getFarmersList
+    );
 };

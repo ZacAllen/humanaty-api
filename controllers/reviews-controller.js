@@ -51,6 +51,13 @@ function createNewReview(date, rating, reviewBody, reviewedAsHost, reviewee, rev
 
           var newReviewRef = database.collection("reviews").doc();
           var newReviewId = newReviewRef.id;
+
+          //Append this review to the reviewee's list of reviews
+          var userRef = database.collection("users").doc(reviewee);
+          userRef.update({
+            reviews:   firebase.firestore.FieldValue.arrayUnion(newReviewId) 
+          })
+            
           
           let setDoc = database.collection("reviews").doc(newReviewId).set({
             date: date,
