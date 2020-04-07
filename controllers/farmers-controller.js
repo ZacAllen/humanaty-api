@@ -87,3 +87,32 @@ exports.getFarmerById = function(req, res, next) {
     //     }
     //  });
 };
+
+exports.getFarmersList = function(req, res, next) {
+    firebase.auth().onAuthStateChanged((user) => {
+        if(user) {
+            // farmerCollection.get().then((doc) => {
+            //     const farmArray = [];
+            //     data.forEach((doc) => {
+            //         farmArray.push(doc.data().name)
+            //     })
+                
+            //     res.send(farmArray);
+            // })
+            const farmArray = [];
+            farmerCollection.get().then(function(query) {
+                query.forEach(function(doc) {
+                    farmArray.push(doc.data().name)
+                })
+                res.send(farmArray)
+            })
+            .catch(err => {
+                console.log("Error retrieving farmer names", err)
+            });
+            
+        } else {
+            console.log("No user logged in");
+            res.send("Error - No user signed in!");
+        }
+    });
+}
