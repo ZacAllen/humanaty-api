@@ -45,6 +45,7 @@ require('./routes/users-route')(app);
 require('./routes/events-route')(app);
 require('./routes/farmers-route')(app);
 require('./routes/reviews-route')(app);
+require('./routes/payment-route')(app);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
