@@ -37,7 +37,8 @@ exports.createEvent = function(req, res, next) {
             hostID: uid,
             photoGallery: event.photoGallery,
             costPerSeat: event.costPerSeat,
-            attendees: {}
+            attendees: {},
+            farms: event.farms
         });
         return setDoc.then(function() {
           console.log("Document successfully written for event!");
